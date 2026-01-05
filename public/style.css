@@ -187,6 +187,7 @@ section {
 
 .section__text__p1 {
   text-align: center;
+  transform: translateY(-50px); /* แกน Y ติดลบ = ขยับขึ้น */
 }
 
 .section__text__p2 {
@@ -197,6 +198,7 @@ section {
 .title {
   font-size: 3rem;
   text-align: center;
+   transform: translateY(-50px);
 }
 
 #socials-container {
@@ -442,4 +444,33 @@ footer {
 
 footer p {
   text-align: center;
+}
+
+/* เจาะจงเฉพาะส่วน Projects เพื่อไม่ให้กระทบส่วนอื่น */
+#projects .about-containers {
+  display: flex;
+  gap: 1.5rem;             /* ระยะห่างระหว่างการ์ด */
+  overflow-x: auto;        /* เปิดให้เลื่อนแนวนอน */
+  flex-wrap: nowrap;       /* สำคัญ! บังคับไม่ให้ขึ้นบรรทัดใหม่ */
+  padding-bottom: 1rem;    /* เผื่อที่ให้ Scrollbar นิดนึง */
+  
+  /* เพิ่มลูกเล่นเวลาเลื่อนแล้วให้หยุดกึ้กๆ ตรงกลาง (Scroll Snap) */
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; /* ให้ลื่นบน iPhone/iPad */
+}
+
+/* กำหนดขนาดการ์ดไม่ให้หดเล็กเกินไป */
+#projects .details-container {
+  flex: 0 0 auto;          /* ห้ามย่อขยายขนาด ให้คงที่ไว้ */
+  width: 300px;            /* กำหนดความกว้างการ์ด (ปรับได้ตามชอบ) */
+  scroll-snap-align: center; /* เวลาหยุดเลื่อน ให้การ์ดอยู่ตรงกลางจอ */
+}
+
+/* (Option) ซ่อน Scrollbar ไม่ให้รกตา แต่ยังเลื่อนได้ */
+#projects .about-containers::-webkit-scrollbar {
+  display: none;
+}
+#projects .about-containers {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
